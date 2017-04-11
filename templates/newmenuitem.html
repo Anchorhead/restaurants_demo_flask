@@ -1,0 +1,11 @@
+<html>
+	<h1>
+		{% import "bootstrap/wtf.html" as wtf %}
+		Create new menu item for {{restaurant.name}}
+	</h1>
+	<body>
+		<div>
+			{{ wtf.quick_form(form) }}
+		</div>
+	</body>
+</html>

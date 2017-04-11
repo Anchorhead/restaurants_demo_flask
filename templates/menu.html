@@ -1,0 +1,33 @@
+<html>
+  <h1>
+    {{restaurant.name}} Menu
+  </h1>
+  <body>
+    {% if menu %}
+    {% for i in items %}
+    <div>
+      <p>
+        {{i.name}}
+      </p>
+      <p>
+        {{i.description}}
+      </p>
+      <p>
+        {{i.price}}
+      </p>
+      <button>
+        Edit
+      </button>
+      <button>
+        Delete
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div>
+      <button>
+        Create new item
+      </button>
+    </div>
+  </body>
+</html>

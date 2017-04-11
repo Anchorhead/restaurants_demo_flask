@@ -1,0 +1,14 @@
+<html>
+  <h1>
+    {{restaurant.name}}
+  </h1>
+  <h1>
+    Edit {{item.name}}
+  </h1>
+  <body>
+    <div>
+      {% import "bootstrap/wtf.html" as wtf %}
+      {{ wtf.quick_form(form) }}
+    </div>
+  </body>
+</html>

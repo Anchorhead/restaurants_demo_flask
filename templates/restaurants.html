@@ -1,0 +1,26 @@
+<html>
+  <h1>
+    Restaurants
+  </h1>
+  <body>
+    {% if restaurants %}
+    {% for r in restaurants %}
+      <div>
+        <p>
+          {{ r.name }}
+          <button>
+            Edit
+          </button>
+          <button>
+            Delete
+          </button>
+        </p>
+      </div>
+    {% endfor %}
+    {% else %}
+    <div>
+      There are no restaurants in the database
+    </div>
+    {% endif %}
+  </body>
+</html>
