@@ -3,31 +3,28 @@
     {{restaurant.name}} Menu
   </h1>
   <body>
-    {% if menu %}
+    {% if items %}
     {% for i in items %}
     <div>
       <p>
-        {{i.name}}
+        Name:
+        {{i.item_name}}
       </p>
       <p>
-        {{i.description}}
+        Description:
+        {{i.item_description}}
       </p>
       <p>
-        {{i.price}}
+        Price
+        {{i.item_price}}
       </p>
-      <button>
-        Edit
-      </button>
-      <button>
-        Delete
-      </button>
+      <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/edit">Edit Item</a>
+      <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/delete">Delete Item</a>
     </div>
     {% endfor %}
     {% endif %}
     <div>
-      <button>
-        Create new item
-      </button>
+      <a href="/restaurants/{{restaurant.id}}/menu/new">Add New Item to Menu</a>
     </div>
   </body>
 </html>

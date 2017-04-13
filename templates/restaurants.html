@@ -8,12 +8,9 @@
       <div>
         <p>
           {{ r.name }}
-          <button>
-            Edit
-          </button>
-          <button>
-            Delete
-          </button>
+          <a href="/restaurants/{{r.id}}/menu">Menu</a>
+          <a href="/restaurants/{{r.id}}/edit">Edit</a>
+          <a href="/restaurants/{{r.id}}/delete">Delete</a>
         </p>
       </div>
     {% endfor %}
