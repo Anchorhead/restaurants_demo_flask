@@ -52,9 +52,11 @@ def restaurantsDelete(restaurant_id):
     session = DBSession()
     form = DeleteRestaurantForm()
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    items = sessioin.query(Menu).filter_by(restaurant_id=restaurant_id).all()
     if request.method == 'POST' and form.validate():
         if form.submit.data:
             session.delete(restaurant)
+            session.delete(items)
             session.commit()
         return redirect(url_for('showRestaurants'))
     return render_template('deleterestaurant.html', restaurant = restaurant, form = form)
