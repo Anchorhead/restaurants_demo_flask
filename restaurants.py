@@ -1,3 +1,4 @@
+from os import environ
 from flask import Flask, render_template, request, url_for, redirect
 from flask_wtf  import FlaskForm
 from flask_wtf.csrf import CSRFProtect
@@ -9,7 +10,7 @@ from dbsetup import Base, Restaurant, Menu
 from restaurantforms import NewRestaurantForm, EditRestaurantForm, DeleteRestaurantForm, NewMenuItemForm, EditMenuItemForm, DeleteMenuItemForm
 
 app = Flask(__name__)
-app.secret_key = '&\xe1`\x0c\xadA \xc7\xe9C\xab\xd3\x9e\x9aQI\x9aJh\xc0\xdf\xb6\x05l'
+app.secret_key = environ['SECRET_KEY']
 Bootstrap(app)
 csrf = CSRFProtect()
 csrf.init_app(app)
