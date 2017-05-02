@@ -9,7 +9,7 @@ Base = declarative_base()
 
 class Restaurant(Base):
     __tablename__ = 'restaurants'
-    id = Column(Integer, primary_key=True)
+    restaurant_id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
 
 class Menu_Item(Base):
