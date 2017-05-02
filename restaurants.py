@@ -15,7 +15,7 @@ Bootstrap(app)
 csrf = CSRFProtect()
 csrf.init_app(app)
 
-engine = create_engine('sqlite:///restaurantmenu.db')
+engine = create_engine(environ['DATABASE_URL'])
 DBSession = sessionmaker(bind=engine)
 
 @app.route('/')
@@ -40,7 +40,7 @@ def restaurantsNew():
 def restaurantsEdit(restaurant_id):
     session = DBSession()
     form = EditRestaurantForm()
-    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    restaurant = session.query(Restaurant).filter_by(restaurant_id=restaurant_id).one()
     if request.method == 'POST' and form.validate():
         restaurant.name = form.name.data
         session.add(restaurant)
@@ -52,8 +52,8 @@ def restaurantsEdit(restaurant_id):
 def restaurantsDelete(restaurant_id):
     session = DBSession()
     form = DeleteRestaurantForm()
-    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
-    items = sessioin.query(Menu).filter_by(restaurant_id=restaurant_id).all()
+    restaurant = session.query(Restaurant).filter_by(restaurant_id=restaurant_id).one()
+    items = session.query(Menu_Item).filter_by(restaurant_id=restaurant_id).all()
     if request.method == 'POST' and form.validate():
         if form.submit.data:
             session.delete(restaurant)
@@ -65,8 +65,8 @@ def restaurantsDelete(restaurant_id):
 @app.route('/restaurants/<int:restaurant_id>/menu/')
 def restaurantsMenu(restaurant_id):
     session = DBSession()
-    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
-    items = session.query(Menu).filter_by(id=restaurant_id).all()
+    restaurant = session.query(Restaurant).filter_by(restaurant_id=restaurant_id).one()
+    items = session.query(Menu_Item).filter_by(restaurant_id=restaurant_id).all()
     session.commit()
     return render_template('menu.html', restaurant = restaurant, items = items)
 
@@ -74,10 +74,10 @@ def restaurantsMenu(restaurant_id):
 def restaurantsMenuItemNew(restaurant_id):
     session = DBSession()
     form = NewMenuItemForm()
-    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    restaurant = session.query(Restaurant).filter_by(restaurant_id=restaurant_id).one()
     if request.method == 'POST' and form.validate():
-        items = session.query(Menu).filter_by(id=restaurant_id).all()
-        newMenuItem = Menu(item_name=form.name.data, item_description=form.description.data, item_price = form.price.data, restaurant_id=restaurant_id)
+        items = session.query(Menu_Item).filter_by(restaurant_id=restaurant_id).all()
+        newMenuItem = Menu_Item(item_name=form.name.data, item_description=form.description.data, item_price = form.price.data, restaurant_id=restaurant_id)
         session.add(newMenuItem)
         session.commit()
         return redirect(url_for('restaurantsMenu',  restaurant_id=restaurant_id))
@@ -87,8 +87,8 @@ def restaurantsMenuItemNew(restaurant_id):
 def restaurantsMenuEdit(restaurant_id, menu_id):
     session = DBSession()
     form = EditMenuItemForm()
-    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
-    item = session.query(Menu).filter_by(id=menu_id).one()
+    restaurant = session.query(Restaurant).filter_by(restaurant_id=restaurant_id).one()
+    item = session.query(Menu_Item).filter_by(id=menu_id).one()
     if request.method == 'POST' and form.validate():
         if form.name.data:
             item.name = form.name.data
@@ -105,8 +105,8 @@ def restaurantsMenuEdit(restaurant_id, menu_id):
 def restaurantsMenuDelete(restaurant_id, menu_id):
     session = DBSession()
     form = DeleteMenuItemForm()
-    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
-    item = session.query(Menu).filter_by(id=menu_id).one()
+    restaurant = session.query(Restaurant).filter_by(restaurant_id=restaurant_id).one()
+    item = session.query(Menu_Item).filter_by(id=menu_id).one()
     if request.method == 'POST' and form.validate():
         if form.submit.data:
             session.delete(item)

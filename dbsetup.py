@@ -9,10 +9,10 @@ Base = declarative_base()
 
 class Restaurant(Base):
     __tablename__ = 'restaurant'
-    id = Column(Integer, primary_key=True)
+    restaurant_id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
 
-class Menu(Base):
+class Menu_Item(Base):
     __tablename__ = 'menu'
     id = Column(Integer, primary_key=True)
     item_name = Column(String(250), nullable=False)

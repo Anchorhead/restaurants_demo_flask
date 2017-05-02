@@ -1,0 +1,1 @@
+web: gunicorn restaurants:app --log-file - 
