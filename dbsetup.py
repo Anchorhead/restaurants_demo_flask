@@ -9,7 +9,7 @@ Base = declarative_base()
 
 class Restaurant(Base):
     __tablename__ = 'restaurant'
-    restaurant_id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
 
 class Menu_Item(Base):
@@ -18,5 +18,5 @@ class Menu_Item(Base):
     item_name = Column(String(250), nullable=False)
     item_description = Column(String(250), nullable=False)
     item_price = Column(Numeric, nullable=False)
-    restaurant_id = Column(Integer, ForeignKey('restaurant.id'))
+    restaurant_id = Column(Integer, ForeignKey('restaurant.restaurant_id'))
     restaurant = relationship(Restaurant)
