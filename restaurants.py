@@ -5,7 +5,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask_bootstrap import Bootstrap
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from dbsetup import Base, Restaurant, Menu
+from dbsetup import Base, Restaurant, Menu_Item
 
 from restaurantforms import NewRestaurantForm, EditRestaurantForm, DeleteRestaurantForm, NewMenuItemForm, EditMenuItemForm, DeleteMenuItemForm
 
