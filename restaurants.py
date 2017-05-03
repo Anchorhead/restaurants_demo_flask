@@ -56,10 +56,10 @@ def restaurantsDelete(restaurant_id):
     items = session.query(Menu_Item).filter_by(restaurant_id=restaurant_id).all()
     if request.method == 'POST' and form.validate():
         if form.submit.data:
-            session.delete(restaurant)
             if items:
                 for i in items:
                     session.delete(i)
+            session.delete(restaurant)
             session.commit()
         return redirect(url_for('showRestaurants'))
     return render_template('deleterestaurant.html', restaurant = restaurant, form = form)
