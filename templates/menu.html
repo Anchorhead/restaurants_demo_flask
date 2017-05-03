@@ -18,13 +18,13 @@
         Price
         {{i.item_price}}
       </p>
-      <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/edit">Edit Item</a>
-      <a href="/restaurants/{{restaurant.id}}/menu/{{i.id}}/delete">Delete Item</a>
+      <a href="/restaurants/{{restaurant.restaurant_id}}/menu/{{i.id}}/edit">Edit Item</a>
+      <a href="/restaurants/{{restaurant.restaurant_id}}/menu/{{i.id}}/delete">Delete Item</a>
     </div>
     {% endfor %}
     {% endif %}
     <div>
-      <a href="/restaurants/{{restaurant.id}}/menu/new">Add New Item to Menu</a>
+      <a href="/restaurants/{{restaurant.restaurants_id}}/menu/new">Add New Item to Menu</a>
     </div>
   </body>
 </html>
